@@ -6,7 +6,7 @@ public class Doctor {
   private String nombre;
   private String especialidad;
   private String telefono;
-  
+  // Davidsito me la chupa
   
   public Doctor(String pid, String pnombre, String pespecialidad, String ptelefono) {
     id = pid;
