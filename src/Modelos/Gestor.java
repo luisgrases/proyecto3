@@ -1,0 +1,18 @@
+package Modelos;
+
+import java.sql.SQLException;
+import java.util.TreeMap;
+import java.util.Vector;
+
+public class Gestor {
+
+	public void registrarDoctor(Doctor doctor) throws Exception {
+	  (new MultiDoctor()).crear(doctor);
+	}
+
+	public Vector<Doctor> listarDoctores() throws SQLException, Exception {
+	  Vector<Doctor> doctores = (new MultiDoctor()).buscarTodos();
+	  return doctores;
+	  
+	}
+}
