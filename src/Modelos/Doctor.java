@@ -13,6 +13,7 @@ public class Doctor {
     nombre = pnombre;
     especialidad = pespecialidad;
     telefono = ptelefono;
+    //JP es playo
   }
   
   public String getId() {
