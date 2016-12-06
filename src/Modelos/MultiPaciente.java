@@ -8,7 +8,7 @@ public class MultiPaciente {
 
 		String sql = "INSERT INTO TPaciente "+
 				"(Cedula, Nombre, Direccion, Telefono,FechaNacimiento,Edad) "+
-				"VALUES ('"+ppaciente.getCedula()+"', '"+ppaciente.getDireccion()+"', '"+ppaciente.getTelefono()+"', '"+ppaciente.getFechaNacimiento()+"', '"+ppaciente.getEdad()+"');";
+				"VALUES ('"+ppaciente.getCedula()+"', '"+ppaciente.getNombre()+"', '"+ppaciente.getDireccion()+"', '"+ppaciente.getTelefono()+"', '"+ppaciente.getFechaNacimiento()+"', '"+ppaciente.getEdad()+"');";
 				    
 			try{
 				Conector.getConector().ejecutarSQL(sql);

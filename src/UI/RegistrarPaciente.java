@@ -100,18 +100,18 @@ public class RegistrarPaciente extends JDialog {
           public void actionPerformed(ActionEvent e) {
             String cedula = cedulaTF.getText();
             String nombre = nombreTF.getText();
-            String especialidad = direccionTF.getText();
+            String direccion = direccionTF.getText();
             String telefono = telefonoTF.getText();
             String fechaNacimiento = txtFechaNacimiento.getText();
             String edad = txtEdad.getText();
             
             
             try {
-              Paciente paciente = new Paciente(cedula,nombre, especialidad, telefono,fechaNacimiento,Integer.parseInt(edad));
+              Paciente paciente = new Paciente(cedula, nombre, direccion, telefono, fechaNacimiento, Integer.parseInt(edad));
               gestorPaciente.agregar(paciente);
               JOptionPane.showMessageDialog(null, "El paciente se ha registrado de manera satisfactoria");
             } catch (Exception e1) {
-              JOptionPane.showMessageDialog(null, "Hubo un error en registrar paciente");
+              JOptionPane.showMessageDialog(null, e1.getMessage());
               e1.printStackTrace();
             }
           }
