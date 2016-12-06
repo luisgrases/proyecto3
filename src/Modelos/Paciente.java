@@ -11,9 +11,8 @@ public class Paciente {
   private int edad;
   private Expediente expediente;
   
-  public Paciente(String pid, String pcedula, String pnombre, String pdireccion, String ptelefono, String pfechaNacimiento,
+  public Paciente(String pcedula, String pnombre, String pdireccion, String ptelefono, String pfechaNacimiento,
       int pedad) {
-    setId(pid);
     setCedula(pcedula);
     setNombre(pnombre);
     setDireccion(pdireccion);
