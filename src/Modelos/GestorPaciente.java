@@ -39,10 +39,10 @@ public class GestorPaciente {
 		(new MultiPinacoteca()).buscar(idPinacoteca);
 		(new MultiCuadro()).actualizar(cuadro, idPintor, idPinacoteca);
 	}
-
-	public void borrar(String pidCuadro) throws Exception {
-		Cuadro cuadro = (new MultiCuadro()).buscar(pidCuadro);
-		(new MultiCuadro()).borrar(cuadro);
-	}
 */
+	public void borrar(String pidPaciente) throws Exception {
+		Paciente paciente = (new MultiPaciente()).buscar(pidPaciente);
+		(new MultiPaciente()).borrar(paciente);
+	}
+
 }

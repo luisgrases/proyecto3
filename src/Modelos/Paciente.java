@@ -9,7 +9,7 @@ public class Paciente {
   private String telefono;
   private String fechaNacimiento;
   private int edad;
-  private Expediente expediente;
+
   
   public Paciente(String pcedula, String pnombre, String pdireccion, String ptelefono, String pfechaNacimiento,
       int pedad) {
