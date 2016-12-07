@@ -1,5 +1,8 @@
 package Modelos;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 import CapaAccesoBD.Conector;
 
 public class MultiPaciente {
@@ -62,5 +65,29 @@ public class MultiPaciente {
 				throw new Exception ("El paciente no existe");
 			}
 		}
+
+	public ArrayList buscarIdsPacientes() throws SQLException, Exception {
+		
+		ArrayList ids= new ArrayList();
+		
+		java.sql.ResultSet resultSet;
+	    String sql;
+	    sql = "SELECT Cedula FROM TPaciente;";
+
+	    resultSet = Conector.getConector().ejecutarSQL(sql,true);
+	    
+	  
+	    
+		    if (resultSet.next()) {
+		 	   
+		    	do{
+		    		ids.add(resultSet.getString("Cedula"));
+		    	}while(resultSet.next());
+		    	    
+			 } 
+	    
+	    
+		return ids;
+	}
 
 }

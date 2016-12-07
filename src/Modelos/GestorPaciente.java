@@ -1,6 +1,7 @@
 package Modelos;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.TreeMap;
 
 public class GestorPaciente {
@@ -43,6 +44,17 @@ public class GestorPaciente {
 	public void borrar(String pidPaciente) throws Exception {
 		Paciente paciente = (new MultiPaciente()).buscar(pidPaciente);
 		(new MultiPaciente()).borrar(paciente);
+	}
+
+	public ArrayList buscarIds() throws SQLException, Exception {
+		
+		ArrayList ids= new ArrayList();
+		
+		ids= (new MultiPaciente()).buscarIdsPacientes();
+		
+		
+		
+		return ids;
 	}
 
 }
