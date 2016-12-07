@@ -32,7 +32,7 @@ public class EliminarPaciente extends JDialog {
   private final JPanel contentPanel = new JPanel();
   private GestorPaciente gestorPaciente;
   JComboBox comboBox ;
-  private ArrayList ids = new ArrayList();
+  private ArrayList cedulas = new ArrayList();
 
   /**
    * Launch the application.
@@ -62,11 +62,11 @@ public class EliminarPaciente extends JDialog {
     
     comboBox = new JComboBox();
     try {
-		ids=gestorPaciente.buscarIds();
+    	cedulas=gestorPaciente.buscarCedulasPacientes();
 		
-		for(int i=0;i<ids.size();i++){
+		for(int i=0;i<cedulas.size();i++){
 			
-			comboBox.addItem(ids.get(i));
+			comboBox.addItem(cedulas.get(i));
 			
 		}
 	} catch (Exception e2) {

@@ -66,7 +66,7 @@ public class MultiPaciente {
 			}
 		}
 
-	public ArrayList buscarIdsPacientes() throws SQLException, Exception {
+	public ArrayList buscarCedulasPacientes() throws SQLException, Exception {
 		
 		ArrayList ids= new ArrayList();
 		
@@ -76,8 +76,6 @@ public class MultiPaciente {
 
 	    resultSet = Conector.getConector().ejecutarSQL(sql,true);
 	    
-	  
-	    
 		    if (resultSet.next()) {
 		 	   
 		    	do{
@@ -85,8 +83,7 @@ public class MultiPaciente {
 		    	}while(resultSet.next());
 		    	    
 			 } 
-	    
-	    
+    	    
 		return ids;
 	}
 

@@ -41,16 +41,16 @@ public class GestorPaciente {
 		(new MultiCuadro()).actualizar(cuadro, idPintor, idPinacoteca);
 	}
 */
-	public void borrar(String pidPaciente) throws Exception {
-		Paciente paciente = (new MultiPaciente()).buscar(pidPaciente);
+	public void borrar(String pcedulaPaciente) throws Exception {
+		Paciente paciente = (new MultiPaciente()).buscar(pcedulaPaciente);
 		(new MultiPaciente()).borrar(paciente);
 	}
 
-	public ArrayList buscarIds() throws SQLException, Exception {
+	public ArrayList buscarCedulasPacientes() throws SQLException, Exception {
 		
 		ArrayList ids= new ArrayList();
 		
-		ids= (new MultiPaciente()).buscarIdsPacientes();
+		ids= (new MultiPaciente()).buscarCedulasPacientes();
 		
 		
 		
