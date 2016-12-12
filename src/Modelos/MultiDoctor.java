@@ -6,6 +6,8 @@ import java.util.*;
 import CapaAccesoBD.Conector;
 
 public class MultiDoctor {
+  
+  
 
 
   public void crear(Doctor pdoctor)throws java.sql.SQLException,Exception{

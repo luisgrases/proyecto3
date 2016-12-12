@@ -26,6 +26,18 @@ public class Consulta {
   }
   
   public Consulta(
+      String pid,
+      String pfechaRealizacion,
+      String pproblema,
+      String pmedicinasRecetadas
+      ) {
+    setId(pid);
+    setFechaRealizacion(pfechaRealizacion);
+    setProblema(pproblema);
+    setMedicinasRecetadas(pmedicinasRecetadas);
+  }
+  
+  public Consulta(
       String pfechaRealizacion,
       String pproblema,
       String pmedicinasRecetadas,
@@ -89,6 +101,12 @@ public class Consulta {
   public void setExpediente(Expediente expediente) {
     this.expediente = expediente;
   }
+
+  @Override
+  public String toString() {
+    return getFechaRealizacion();
+  }
+  
   
   
   
