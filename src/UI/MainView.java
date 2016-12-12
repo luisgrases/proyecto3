@@ -51,17 +51,22 @@ public class MainView {
     
     JButton btnAdministracionDeExpedientes = new JButton("Administracion de Expedientes");
     
-    JButton btnAdministrarConsultas = new JButton("Administrar Consultas");
+    JButton btnAdministrarConsultas = new JButton("Registrar Consulta");
     btnAdministrarConsultas.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
       }
     });
+    
+    JButton btnNewButton = new JButton("Buscar Consulta");
     GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
     groupLayout.setHorizontalGroup(
       groupLayout.createParallelGroup(Alignment.LEADING)
         .addGroup(groupLayout.createSequentialGroup()
           .addGap(19)
           .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(groupLayout.createSequentialGroup()
+              .addGap(6)
+              .addComponent(btnNewButton))
             .addComponent(btnAdministrarConsultas)
             .addComponent(btnAdministracionDeExpedientes)
             .addComponent(btnConsultarDoctor, GroupLayout.PREFERRED_SIZE, 147, GroupLayout.PREFERRED_SIZE)
@@ -79,7 +84,9 @@ public class MainView {
           .addComponent(btnAdministracionDeExpedientes)
           .addPreferredGap(ComponentPlacement.RELATED)
           .addComponent(btnAdministrarConsultas)
-          .addContainerGap(112, Short.MAX_VALUE))
+          .addPreferredGap(ComponentPlacement.RELATED)
+          .addComponent(btnNewButton)
+          .addContainerGap(77, Short.MAX_VALUE))
     );
     frame.getContentPane().setLayout(groupLayout);
   }
