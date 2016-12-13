@@ -19,7 +19,6 @@ import java.awt.event.ActionEvent;
 public class RegistrarDoctor extends JDialog {
 
   private final JPanel contentPanel = new JPanel();
-  private JTextField idTF;
   private JTextField nombreTF;
   private JTextField especialidadTF;
   private JTextField telefonoTF;
@@ -51,12 +50,6 @@ public class RegistrarDoctor extends JDialog {
     contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
     getContentPane().add(contentPanel, BorderLayout.CENTER);
     {
-      idTF = new JTextField();
-      idTF.setText("ID");
-      contentPanel.add(idTF);
-      idTF.setColumns(10);
-    }
-    {
       nombreTF = new JTextField();
       nombreTF.setText("Nombre");
       contentPanel.add(nombreTF);
@@ -82,14 +75,13 @@ public class RegistrarDoctor extends JDialog {
         JButton okButton = new JButton("OK");
         okButton.addActionListener(new ActionListener() {
           public void actionPerformed(ActionEvent e) {
-            String id = idTF.getText();
             String nombre = nombreTF.getText();
             String especialidad = especialidadTF.getText();
             String telefono = telefonoTF.getText();
             
             
             try {
-              Doctor doctor = new Doctor(id, nombre, especialidad, telefono);
+              Doctor doctor = new Doctor(nombre, especialidad, telefono);
               gestor.registrarDoctor(doctor);
               JOptionPane.showMessageDialog(null, "El doctor se ha creado satisfactoriamente");
             } catch (Exception e1) {

@@ -1,5 +1,6 @@
 package Modelos;
 
+import java.sql.SQLException;
 import java.util.Vector;
 
 public class Expediente {
@@ -21,8 +22,8 @@ public class Expediente {
       String pdireccionPaciente,
       String pfechaNacimientoPaciente,
       String ptelefonoPaciente,
-      String pcedulaPaciente,
-      int pedadPaciente) {
+      String pcedulaPaciente
+      ) {
     setId(pid);
     setFechaApertura(pfechaApertura);
     setNombrePaciente(pnombrePaciente);
@@ -30,7 +31,22 @@ public class Expediente {
     setFechaNacimientoPaciente(pfechaNacimientoPaciente);
     setTelefonoPaciente(ptelefonoPaciente);
     setCedulaPaciente(pcedulaPaciente);
-    setEdadPaciente(pedadPaciente);
+  }
+  
+  public Expediente(
+      String pfechaApertura,
+      String pnombrePaciente,
+      String pdireccionPaciente,
+      String pfechaNacimientoPaciente,
+      String ptelefonoPaciente,
+      String pcedulaPaciente
+      ) {
+    setFechaApertura(pfechaApertura);
+    setNombrePaciente(pnombrePaciente);
+    setDireccionPaciente(pdireccionPaciente);
+    setFechaNacimientoPaciente(pfechaNacimientoPaciente);
+    setTelefonoPaciente(ptelefonoPaciente);
+    setCedulaPaciente(pcedulaPaciente);
   }
   
   public String getId() {
@@ -49,7 +65,10 @@ public class Expediente {
     this.fechaApertura = fechaApertura;
   }
   
-  public Vector<Consulta> getConsultas() {
+  public Vector<Consulta> getConsultas() throws SQLException, Exception {
+    if (consultas == null) {
+      setConsultas(new MultiConsulta().buscarConsultasPorExpediente(id));
+    }
     return consultas;
   }
   
@@ -83,6 +102,7 @@ public class Expediente {
 
   public void setFechaNacimientoPaciente(String fechaNacimientoPaciente) {
     this.fechaNacimientoPaciente = fechaNacimientoPaciente;
+    this.edadPaciente = 9;
   }
 
   public String getTelefonoPaciente() {
@@ -116,7 +136,7 @@ public class Expediente {
 
   @Override
   public String toString() {
-    return id;
+    return getNombrePaciente();
   }
   
   
