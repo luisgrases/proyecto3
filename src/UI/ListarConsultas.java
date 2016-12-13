@@ -2,6 +2,7 @@ package UI;
 
 import java.awt.BorderLayout;
 import Modelos.*;
+
 import java.awt.FlowLayout;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -11,15 +12,22 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
 
+
 public class ListarConsultas extends JDialog {
 
   private final JPanel contentPanel = new JPanel();
+  private JList listaConsultas;
+  private GestorConsulta gestorConsulta;
+  private GestorExpediente gestorExpediente;
+  DefaultListModel model;
 
   /**
    * Launch the application.
@@ -39,15 +47,46 @@ public class ListarConsultas extends JDialog {
    */
   public ListarConsultas() {
     
+    gestorConsulta = new GestorConsulta();
+    gestorExpediente = new GestorExpediente();
+    model = new DefaultListModel();
+    JList listaConsultas = new JList(model);
+    
     Vector<Consulta> consultas = new Vector<Consulta>();
+    Vector<Expediente> expedientes = new Vector<Expediente>();
     try {
-      consultas = GestorConsulta.listar();
+      consultas = gestorConsulta.listar();
+      expedientes = gestorExpediente.listar();
     } catch (SQLException e) {
       e.printStackTrace();
     } catch (Exception e) {
       e.printStackTrace();
     }
-    JList list = new JList(consultas.toArray());
+    
+    JList listaExpedientes = new JList(expedientes.toArray());
+    
+    
+    listaExpedientes.addListSelectionListener(new ListSelectionListener() {
+      public void valueChanged(ListSelectionEvent e) {
+        
+        Expediente expedienteSeleccionado = (Expediente)listaExpedientes.getSelectedValue();
+        try {
+          
+          Vector<Consulta> consultas = expedienteSeleccionado.getConsultas();
+          model.removeAllElements();
+          for(Consulta consulta : consultas){
+            model.addElement(consulta);  
+          }
+          
+        } catch (SQLException e1) {
+          // TODO Auto-generated catch block
+          e1.printStackTrace();
+        } catch (Exception e1) {
+          // TODO Auto-generated catch block
+          e1.printStackTrace();
+        }
+      }
+    });
     
     setBounds(100, 100, 450, 300);
     getContentPane().setLayout(new BorderLayout());
@@ -55,23 +94,16 @@ public class ListarConsultas extends JDialog {
     getContentPane().add(contentPanel, BorderLayout.CENTER);
     
     JScrollPane scrollPane = new JScrollPane();
-    GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
-    gl_contentPanel.setHorizontalGroup(
-      gl_contentPanel.createParallelGroup(Alignment.LEADING)
-        .addGroup(gl_contentPanel.createSequentialGroup()
-          .addContainerGap()
-          .addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)
-          .addContainerGap())
-    );
-    gl_contentPanel.setVerticalGroup(
-      gl_contentPanel.createParallelGroup(Alignment.LEADING)
-        .addGroup(gl_contentPanel.createSequentialGroup()
-          .addContainerGap()
-          .addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE))
-    );
+    scrollPane.setBounds(236, 6, 166, 223);
+    JScrollPane scrollPane_1 = new JScrollPane();
+    scrollPane_1.setBounds(6, 6, 203, 216);
     
-    scrollPane.setViewportView(list);
-    contentPanel.setLayout(gl_contentPanel);
+    scrollPane_1.setViewportView(listaExpedientes);
+    contentPanel.setLayout(null);
+    
+    scrollPane.setViewportView(listaConsultas);
+    contentPanel.add(scrollPane);
+    contentPanel.add(scrollPane_1);
     {
       JPanel buttonPane = new JPanel();
       buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));

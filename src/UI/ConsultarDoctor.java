@@ -12,23 +12,27 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
+import Modelos.Consulta;
 import Modelos.Doctor;
+import Modelos.Expediente;
 import Modelos.Gestor;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
 public class ConsultarDoctor extends JDialog {
-
-  private final JPanel contentPanel = new JPanel();
   private Gestor gestor;
   private JPanel buttonPane;
   private JTextField idTF;
+  JList list;
 
   /**
    * Launch the application.
@@ -48,53 +52,84 @@ public class ConsultarDoctor extends JDialog {
    */
   public ConsultarDoctor() {
     gestor = new Gestor();
+    Vector<Doctor> doctores;
+    try {
+      doctores = gestor.listarDoctores();
+      list = new JList(doctores.toArray());
+    } catch (Exception e1) {
+      System.out.println("No se encontraron doctores");
+      e1.printStackTrace();
+    }
+    
     
     setBounds(100, 100, 450, 300);
-    contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
     {
       buttonPane = new JPanel();
+      buttonPane.setBounds(0, 239, 450, 39);
       buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
       {
-        JButton okButton = new JButton("OK");
-        okButton.addActionListener(new ActionListener() {
+        JButton mostrarButton = new JButton("Mostrar");
+        mostrarButton.addActionListener(new ActionListener() {
           public void actionPerformed(ActionEvent e) {
-            String id = idTF.getText();
+            Doctor doctorSeleccionado = (Doctor)list.getSelectedValue();
+            JOptionPane.showMessageDialog(null,
+                "Id: " + doctorSeleccionado.getId() + "\n" +
+                "Nombre: " + doctorSeleccionado.getNombre() + "\n" +
+                "Especialidad: " + doctorSeleccionado.getEspecialidad() + "\n" +
+                "Telefono: " + doctorSeleccionado.getTelefono()
+                );
           }
         });
-        okButton.setActionCommand("OK");
-        buttonPane.add(okButton);
-        getRootPane().setDefaultButton(okButton);
+        
+        mostrarButton.setActionCommand("OK");
+        buttonPane.add(mostrarButton);
+        getRootPane().setDefaultButton(mostrarButton);
       }
       {
-        JButton cancelButton = new JButton("Cancel");
+        JButton cancelButton = new JButton("Salir");
         cancelButton.setActionCommand("Cancel");
         buttonPane.add(cancelButton);
       }
     }
     
     idTF = new JTextField();
+    idTF.setBounds(27, 22, 134, 28);
     idTF.setText("ID");
     idTF.setColumns(10);
-    GroupLayout groupLayout = new GroupLayout(getContentPane());
-    groupLayout.setHorizontalGroup(
-      groupLayout.createParallelGroup(Alignment.LEADING)
-        .addComponent(contentPanel, GroupLayout.PREFERRED_SIZE, 450, GroupLayout.PREFERRED_SIZE)
-        .addComponent(buttonPane, GroupLayout.PREFERRED_SIZE, 450, GroupLayout.PREFERRED_SIZE)
-        .addGroup(groupLayout.createSequentialGroup()
-          .addGap(149)
-          .addComponent(idTF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-    );
-    groupLayout.setVerticalGroup(
-      groupLayout.createParallelGroup(Alignment.LEADING)
-        .addGroup(groupLayout.createSequentialGroup()
-          .addGap(30)
-          .addComponent(idTF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-          .addGap(18)
-          .addComponent(contentPanel, GroupLayout.PREFERRED_SIZE, 163, GroupLayout.PREFERRED_SIZE)
-          .addComponent(buttonPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-    );
-    contentPanel.setLayout(null);
-    getContentPane().setLayout(groupLayout);
+    getContentPane().setLayout(null);
+    getContentPane().add(buttonPane);
+    getContentPane().add(idTF);
+    {
+      JScrollPane scrollPane = new JScrollPane();
+      scrollPane.setBounds(24, 62, 323, 165);
+      getContentPane().add(scrollPane);
+      {
+        scrollPane.setViewportView(list);
+      }
+    }
+    {
+      JButton buscarPorIdBtn = new JButton("Buscar por id");
+      buscarPorIdBtn.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+          String id = idTF.getText();
+          try {
+            Doctor doctor = gestor.buscarDoctor(id);
+            JOptionPane.showMessageDialog(null,
+                "Id: " + doctor.getId() + "\n" +
+                "Nombre: " + doctor.getNombre() + "\n" +
+                "Especialidad: " + doctor.getEspecialidad() + "\n" +
+                "Telefono: " + doctor.getTelefono()
+                );
+          } catch (Exception e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+          }
+          
+        }
+      });
+      buscarPorIdBtn.setBounds(173, 23, 117, 29);
+      getContentPane().add(buscarPorIdBtn);
+    }
   }
   
 }

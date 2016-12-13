@@ -15,4 +15,10 @@ public class Gestor {
 	  return doctores;
 	  
 	}
+	
+	public Doctor buscarDoctor(String pid) throws SQLException, Exception {
+    Doctor doctor = (new MultiDoctor()).buscar(pid);
+    return doctor;
+    
+  }
 }

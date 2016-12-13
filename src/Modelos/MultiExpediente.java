@@ -25,8 +25,7 @@ public class MultiExpediente {
             rs.getString("DireccionPaciente"),
             rs.getString("FechaNacimientoPaciente"),
             rs.getString("TelefonoPaciente"),
-            rs.getString("CedulaPaciente"),
-            rs.getInt("EdadPaciente")
+            rs.getString("CedulaPaciente")
             );
         expedientes.add(expediente);
       } while (rs.next());
@@ -41,7 +40,7 @@ public class MultiExpediente {
   
   public void crear(Expediente pexpediente)throws java.sql.SQLException,Exception{
 
-    String sql = "INSERT INTO TExpediente"+"(FechaRealizacion, Problema, MedicinasRecetadas, IDExpediente, CedulaPaciente, NombrePaciente, DireccionPaciente, TelefonoPaciente, FechaNacimientoPaciente, EdadPaciente)" +
+    String sql = "INSERT INTO TExpediente"+"(FechaApertura, CedulaPaciente, NombrePaciente, DireccionPaciente, TelefonoPaciente, FechaNacimientoPaciente, EdadPaciente)" +
         "VALUES ('" +
         pexpediente.getFechaApertura() + "', '" + 
         pexpediente.getCedulaPaciente() + "','" +
