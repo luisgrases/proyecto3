@@ -9,6 +9,8 @@ import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class MainView {
 
@@ -41,11 +43,31 @@ public class MainView {
    * Initialize the contents of the frame.
    */
   private void initialize() {
+	  
     frame = new JFrame();
     frame.setBounds(100, 100, 450, 300);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     
     JButton btnRegistrarDoctor = new JButton("Registrar Doctor");
+    btnRegistrarDoctor.addMouseListener(new MouseAdapter() {
+    	@Override
+    	public void mouseClicked(MouseEvent e) {
+    		
+    		RegistrarDoctor view = new RegistrarDoctor();
+    		
+    		view.setVisible(true);
+    		
+    		frame.dispose();
+    		
+    	}
+    });
+   
+    	
+    	
+		
+    ;
+    
+    
     
     JButton btnConsultarDoctor = new JButton("Consultar Doctor");
     

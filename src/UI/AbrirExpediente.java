@@ -15,6 +15,8 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -136,19 +138,13 @@ public class AbrirExpediente extends JDialog {
             String telefonoPaciente = telefonoPacienteTF.getText();
             String fechaNacimientoPaciente = fechaNacimientoTF.getText();
             
-            Expediente nuevoExpediente = new Expediente(
-                fechaApertura,
-                cedulaPaciente,
-                nombrePaciente,
-                direccionPaciente,
-                telefonoPaciente,
-                fechaNacimientoPaciente
-                );
+           
             try {
-              gestorExpediente.registrar(nuevoExpediente);
+              gestorExpediente.registrar(fechaApertura,cedulaPaciente,nombrePaciente,direccionPaciente,telefonoPaciente,fechaNacimientoPaciente);
+              JOptionPane.showMessageDialog(null, "Se ha abierto el expediente de forma satisfacora");
             } catch (Exception e1) {
-              // TODO Auto-generated catch block
-              e1.printStackTrace();
+            	
+            	JOptionPane.showMessageDialog(null, "ERROR"+e1);
             }
           }
         });

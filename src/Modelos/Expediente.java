@@ -1,6 +1,10 @@
 package Modelos;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Vector;
 
 public class Expediente {
@@ -19,18 +23,22 @@ public class Expediente {
       String pid,
       String pfechaApertura,
       String pnombrePaciente,
+      String pcedulaPaciente,
       String pdireccionPaciente,
       String pfechaNacimientoPaciente,
       String ptelefonoPaciente,
-      String pcedulaPaciente
+      String pedadPaciente
       ) {
+	  
+	  
     setId(pid);
     setFechaApertura(pfechaApertura);
     setNombrePaciente(pnombrePaciente);
+    setCedulaPaciente(pcedulaPaciente);
     setDireccionPaciente(pdireccionPaciente);
     setFechaNacimientoPaciente(pfechaNacimientoPaciente);
     setTelefonoPaciente(ptelefonoPaciente);
-    setCedulaPaciente(pcedulaPaciente);
+    
   }
   
   public Expediente(
@@ -49,6 +57,10 @@ public class Expediente {
     setCedulaPaciente(pcedulaPaciente);
   }
   
+  
+
+
+
   public String getId() {
     return id;
   }
@@ -102,10 +114,45 @@ public class Expediente {
 
   public void setFechaNacimientoPaciente(String fechaNacimientoPaciente) {
     this.fechaNacimientoPaciente = fechaNacimientoPaciente;
-    this.edadPaciente = 9;
+    
+    
+    int edad = calcularEdad(fechaNacimientoPaciente);
+    
+    setEdadPaciente(edad);
+    
   }
 
-  public String getTelefonoPaciente() {
+  private int calcularEdad(String pfechaNacimientoPaciente) {
+	
+	  Date fechaNac=null;
+	  
+	  try {
+         
+		/**Se puede cambiar la mascara por el formato de la fecha
+          que se quiera recibir, por ejemplo año mes día "yyyy-MM-dd"
+          en este caso es día mes año*/
+		  fechaNac = new SimpleDateFormat("dd/MM/yyyy").parse(pfechaNacimientoPaciente);
+      } catch (Exception ex) {
+          System.out.println("Error:"+ex);
+      }
+      Calendar fechaNacimiento = Calendar.getInstance();
+      //Se crea un objeto con la fecha actual
+      Calendar fechaActual = Calendar.getInstance();
+      //Se asigna la fecha recibida a la fecha de nacimiento.
+      fechaNacimiento.setTime(fechaNac);
+      //Se restan la fecha actual y la fecha de nacimiento
+      int año = fechaActual.get(Calendar.YEAR)- fechaNacimiento.get(Calendar.YEAR);
+      int mes =fechaActual.get(Calendar.MONTH)- fechaNacimiento.get(Calendar.MONTH);
+      int dia = fechaActual.get(Calendar.DATE)- fechaNacimiento.get(Calendar.DATE);
+      //Se ajusta el año dependiendo el mes y el día
+      if(mes<0 || (mes==0 && dia<0)){
+          año--;
+      }
+      
+      return año;
+  }
+
+public String getTelefonoPaciente() {
     return telefonoPaciente;
   }
 
@@ -131,7 +178,7 @@ public class Expediente {
 
 
   public void setEdadPaciente(int edadPaciente) {
-    this.edadPaciente = edadPaciente;
+    this.edadPaciente=edadPaciente;
   }
 
   @Override

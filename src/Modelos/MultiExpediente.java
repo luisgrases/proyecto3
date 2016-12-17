@@ -1,5 +1,6 @@
 package Modelos;
 
+import java.sql.SQLException;
 import java.util.Vector;
 
 import CapaAccesoBD.Conector;
@@ -22,15 +23,16 @@ public class MultiExpediente {
             rs.getString("ID"),
             rs.getString("FechaApertura"),
             rs.getString("NombrePaciente"),
+            rs.getString("CedulaPaciente"),
             rs.getString("DireccionPaciente"),
-            rs.getString("FechaNacimientoPaciente"),
             rs.getString("TelefonoPaciente"),
-            rs.getString("CedulaPaciente")
+            rs.getString("FechaNacimientoPaciente"),
+            rs.getString("EdadPaciente")
             );
         expedientes.add(expediente);
       } while (rs.next());
     }else{
-      throw new Exception ("No se encuentras expedientes registrados");
+      throw new Exception ("No se encuentran expedientes registrados");
 
     }
     rs.close();
@@ -40,14 +42,14 @@ public class MultiExpediente {
   
   public void crear(Expediente pexpediente)throws java.sql.SQLException,Exception{
 
-    String sql = "INSERT INTO TExpediente"+"(FechaApertura, CedulaPaciente, NombrePaciente, DireccionPaciente, TelefonoPaciente, FechaNacimientoPaciente, EdadPaciente)" +
+    String sql = "INSERT INTO TExpediente"+"(FechaApertura, FechaNacimientoPaciente, CedulaPaciente, NombrePaciente, TelefonoPaciente, DireccionPaciente, EdadPaciente)" +
         "VALUES ('" +
         pexpediente.getFechaApertura() + "', '" + 
+        pexpediente.getFechaNacimientoPaciente()+"','"+
         pexpediente.getCedulaPaciente() + "','" +
         pexpediente.getNombrePaciente()+"','"+
-        pexpediente.getDireccionPaciente()+"','"+
         pexpediente.getTelefonoPaciente()+"','"+
-        pexpediente.getFechaNacimientoPaciente()+"','"+
+        pexpediente.getDireccionPaciente()+"','"+
         pexpediente.getEdadPaciente()+"');";
 
     try{
@@ -56,6 +58,62 @@ public class MultiExpediente {
     }catch(Exception e){
       throw new Exception ("No se ha podido registrar la consulta. "+e);
     }
+
+  }
+
+  public Expediente buscarCedulaPaciente(String pcedula) throws SQLException, Exception {
+	 Expediente ex;
+	 java.sql.ResultSet rs;
+	 String sql;
+
+	    sql = "SELECT ID,FechaApertura,NombrePaciente,DireccionPaciente,TelefonoPaciente,FechaNacimientoPaciente,EdadPaciente "+
+	        "FROM TExpediente "+
+	        "WHERE CedulaPaciente='"+ pcedula +"';";
+	    
+		rs = Conector.getConector().ejecutarSQL(sql,true);
+		if (rs.next()){
+			ex = new Expediente(
+				rs.getString("ID"),
+				rs.getString("FechaApertura"),
+				rs.getString("NombrePaciente"),
+				rs.getString("DireccionPaciente"),
+				//rs.getString("FechaNacimiento"),
+				rs.getString("TelefonoPaciente"),
+				rs.getString("EdadPaciente"));
+		} else {
+			throw new Exception ("El paciente no esta registrado");
+		}
+		rs.close();
+
+	return ex;
+  }
+
+  public Expediente buscarExpedientePaciente(String pnumeroExpediente) throws SQLException, Exception {
+	
+		Expediente ex;
+		 java.sql.ResultSet rs;
+		 String sql;
+	
+		    sql = "SELECT ID,FechaApertura,NombrePaciente,DireccionPaciente,TelefonoPaciente,FechaNacimientoPaciente,EdadPaciente "+
+		        "FROM TExpediente "+
+		        "WHERE ID='"+ pnumeroExpediente +"';";
+		    
+			rs = Conector.getConector().ejecutarSQL(sql,true);
+			if (rs.next()){
+				ex = new Expediente(
+					rs.getString("ID"),
+					rs.getString("FechaApertura"),
+					rs.getString("NombrePaciente"),
+					rs.getString("DireccionPaciente"),
+					//rs.getString("FechaNacimiento"),
+					rs.getString("TelefonoPaciente"),
+					rs.getString("EdadPaciente"));
+			} else {
+				throw new Exception ("El paciente no esta registrado");
+			}
+			rs.close();
+	
+		return ex;
 
   }
 

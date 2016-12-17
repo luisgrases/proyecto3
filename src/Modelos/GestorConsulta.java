@@ -5,8 +5,11 @@ import java.util.Vector;
 
 public class GestorConsulta {
   
-  public static void agregar(Consulta pconsulta) throws SQLException, Exception {
-    (new MultiConsulta()).crear(pconsulta);
+  public static void agregar(String pfechaRealizacion,String pdescripcionProblema,String pmedicinasRecetadas,String pdoctorSeleccionado,String pexpedienteSeleccionado) throws SQLException, Exception {
+	  
+	 Consulta nuevaConsulta = new Consulta(pfechaRealizacion, pdescripcionProblema, pmedicinasRecetadas, pdoctorSeleccionado, pexpedienteSeleccionado);
+      
+    (new MultiConsulta()).crear(nuevaConsulta);
   }
   
   public static Vector<Consulta> listar() throws SQLException, Exception {

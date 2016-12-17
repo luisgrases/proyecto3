@@ -18,7 +18,8 @@ import javax.swing.event.ListSelectionListener;
 import Modelos.Consulta;
 import Modelos.Doctor;
 import Modelos.Expediente;
-import Modelos.Gestor;
+import Modelos.GestorDoctor;
+
 import javax.swing.JScrollPane;
 import javax.swing.JList;
 import javax.swing.GroupLayout;
@@ -29,7 +30,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
 public class ConsultarDoctor extends JDialog {
-  private Gestor gestor;
+  private GestorDoctor gestorDoctor = new GestorDoctor() ;
   private JPanel buttonPane;
   private JTextField idTF;
   JList list;
@@ -51,14 +52,18 @@ public class ConsultarDoctor extends JDialog {
    * Create the dialog.
    */
   public ConsultarDoctor() {
-    gestor = new Gestor();
+    
     Vector<Doctor> doctores;
     try {
-      doctores = gestor.listarDoctores();
+    	
+      doctores = gestorDoctor.listarDoctores();
       list = new JList(doctores.toArray());
+    
     } catch (Exception e1) {
+    	
       System.out.println("No se encontraron doctores");
       e1.printStackTrace();
+    
     }
     
     
@@ -113,7 +118,7 @@ public class ConsultarDoctor extends JDialog {
         public void actionPerformed(ActionEvent e) {
           String id = idTF.getText();
           try {
-            Doctor doctor = gestor.buscarDoctor(id);
+            Doctor doctor = gestorDoctor.buscarDoctor(id);
             JOptionPane.showMessageDialog(null,
                 "Id: " + doctor.getId() + "\n" +
                 "Nombre: " + doctor.getNombre() + "\n" +
