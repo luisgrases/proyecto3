@@ -25,8 +25,8 @@ public class MultiExpediente {
             rs.getString("NombrePaciente"),
             rs.getString("CedulaPaciente"),
             rs.getString("DireccionPaciente"),
-            rs.getString("TelefonoPaciente"),
             rs.getString("FechaNacimientoPaciente"),
+            rs.getString("TelefonoPaciente"),
             rs.getString("EdadPaciente")
             );
         expedientes.add(expediente);

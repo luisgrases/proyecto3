@@ -8,13 +8,15 @@ public class MultiConsulta {
   
   public void crear(Consulta pconsulta)throws java.sql.SQLException,Exception{
 
-    String sql = "INSERT INTO TConsulta"+"(FechaRealizacion, Problema, MedicinasRecetadas, IDDoctor, IDExpediente)" +
+    String sql = "INSERT INTO TConsulta"+"(IDDoctor,IDExpediente,FechaRealizacion, Problema, MedicinasRecetadas)" +
         "VALUES ('" +
+    	
+		pconsulta.getExpediente() + "', '"+
+		pconsulta.getDoctor() + "', '" + 
         pconsulta.getFechaRealizacion() + "', '" + 
         pconsulta.getProblema() + "', '" + 
-        pconsulta.getMedicinasRecetadas() + "', '" + 
-        pconsulta.getDoctor().getId() + "', '" + 
-        pconsulta.getExpediente().getId() + "');";
+        pconsulta.getMedicinasRecetadas() + "');";
+        
 
     try{
       Conector.getConector().ejecutarSQL(sql);

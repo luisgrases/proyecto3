@@ -49,7 +49,7 @@ public class MultiDoctor {
   public Vector<Doctor> buscarTodos()throws java.sql.SQLException,Exception{
 
     Vector<Doctor> doctores = new Vector();
-
+    
     java.sql.ResultSet rs;
     String sql;
     sql = "SELECT * " +

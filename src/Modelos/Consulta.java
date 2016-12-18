@@ -6,23 +6,23 @@ public class Consulta {
   private String fechaRealizacion;
   private String problema;
   private String MedicinasRecetadas;
-  private Doctor doctor;
-  private Expediente expediente;
+  private String idDoctor;
+  private String idExpediente;
   
   public Consulta(
       String pid,
       String pfechaRealizacion,
       String pproblema,
       String pmedicinasRecetadas,
-      Doctor pdoctor,
-      Expediente pexpediente
+      String pidDoctor,
+      String pidExpediente
       ) {
     setId(pid);
     setFechaRealizacion(pfechaRealizacion);
     setProblema(pproblema);
     setMedicinasRecetadas(pmedicinasRecetadas);
-    setDoctor(pdoctor);
-    setExpediente(pexpediente);
+    setDoctor(pidDoctor);
+    setExpediente(pidExpediente);
   }
   
   public Consulta(
@@ -41,8 +41,8 @@ public class Consulta {
       String pfechaRealizacion,
       String pproblema,
       String pmedicinasRecetadas,
-      Doctor pdoctor,
-      Expediente pexpediente
+      String pdoctor,
+      String pexpediente
       ) {
     setFechaRealizacion(pfechaRealizacion);
     setProblema(pproblema);
@@ -84,22 +84,22 @@ public class Consulta {
     MedicinasRecetadas = medicinasRecetadas;
   }
   
-  public Doctor getDoctor() {
-    return doctor;
+  public String getDoctor() {
+    return idDoctor;
   }
   
-  public void setDoctor(Doctor doctor) {
-    this.doctor = doctor;
+  public void setDoctor(String pidDoctor) {
+    this.idDoctor = pidDoctor;
   }
   
 
-  public Expediente getExpediente() {
-    return expediente;
+  public String getExpediente() {
+    return idExpediente;
   }
 
 
-  public void setExpediente(Expediente expediente) {
-    this.expediente = expediente;
+  public void setExpediente(String pexpediente) {
+    this.idExpediente = pexpediente;
   }
 
   @Override

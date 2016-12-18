@@ -9,6 +9,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import org.apache.commons.lang.Validate;
+
 import Modelos.Doctor;
 
 import Modelos.GestorDoctor;
@@ -27,6 +29,7 @@ public class RegistrarDoctor extends JDialog {
   private JTextField telefonoTF;
   private GestorDoctor gestorDoctor = new GestorDoctor();
   MainView window = new MainView();
+  public Validate validate = new Validate();
   
  
 
@@ -86,8 +89,13 @@ public class RegistrarDoctor extends JDialog {
           String telefono = telefonoTF.getText();
           
           
+	          
+	    
+          
           try {
-            
+        	  Validate.notEmpty(nombre);
+	          Validate.notEmpty(especialidad);
+	          Validate.notEmpty(telefono);
             gestorDoctor.registrarDoctor(nombre,especialidad,telefono);
             JOptionPane.showMessageDialog(null, "El doctor se ha creado satisfactoriamente");
           

@@ -16,6 +16,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.TreeMap;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
@@ -28,8 +30,10 @@ public class RegistrarConsulta extends JDialog {
   private JTextField medicinasRecetadasTF;
   private JComboBox doctorCB;
   private JComboBox expedienteCB;
-  private GestorConsulta gestorConsulta;
-
+  private GestorConsulta gestorConsulta = new GestorConsulta();
+  GestorDoctor gestorDoctor = new GestorDoctor();
+  GestorExpediente gestorExpediente = new GestorExpediente();
+  
   /**
    * Launch the application.
    */
@@ -51,8 +55,8 @@ public class RegistrarConsulta extends JDialog {
    * @throws SQLException 
    */
   public RegistrarConsulta() throws SQLException, Exception {
-    Vector<Doctor> doctores = new MultiDoctor().buscarTodos();
-    Vector<Expediente> expedientes = new MultiExpediente().buscarTodos();
+    Vector doctores = gestorDoctor.obtenerDoctores();
+    Vector expedientes = gestorExpediente.obtenerExpedientes();
     setBounds(100, 100, 450, 300);
     getContentPane().setLayout(new BorderLayout());
     contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -141,13 +145,15 @@ public class RegistrarConsulta extends JDialog {
             String medicinasRecetadas = medicinasRecetadasTF.getText();
 
             try {
-              Doctor doctorSeleccionado = (Doctor) doctorCB.getSelectedItem();
-              Expediente expedienteSeleccionado = (Expediente) expedienteCB.getSelectedItem();
-              Consulta nuevaConsulta = new Consulta(fechaRealizacion, descripcionProblema, medicinasRecetadas, doctorSeleccionado, expedienteSeleccionado);
-              gestorConsulta.agregar(nuevaConsulta);
+              TreeMap datosExpediente = (TreeMap) expedienteCB.getSelectedItem();
+              TreeMap doctorSeleccionado = (TreeMap) doctorCB.getSelectedItem();
+             
+              
+              
+              gestorConsulta.agregar(fechaRealizacion, descripcionProblema, medicinasRecetadas, doctorSeleccionado, datosExpediente);
               JOptionPane.showMessageDialog(null, "Se registro la consulta satisfactoriamente");
             } catch (Exception e1) {
-              JOptionPane.showMessageDialog(null, e1.getMessage());
+              JOptionPane.showMessageDialog(null,"Error"+e1);
               e1.printStackTrace();
             }
           }

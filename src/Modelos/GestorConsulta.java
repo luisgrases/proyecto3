@@ -1,13 +1,19 @@
 package Modelos;
 
 import java.sql.SQLException;
+import java.util.TreeMap;
 import java.util.Vector;
+
+import javax.swing.JOptionPane;
 
 public class GestorConsulta {
   
-  public static void agregar(String pfechaRealizacion,String pdescripcionProblema,String pmedicinasRecetadas,String pdoctorSeleccionado,String pexpedienteSeleccionado) throws SQLException, Exception {
-	  
-	 Consulta nuevaConsulta = new Consulta(pfechaRealizacion, pdescripcionProblema, pmedicinasRecetadas, pdoctorSeleccionado, pexpedienteSeleccionado);
+  public  void agregar(String pfechaRealizacion,String pdescripcionProblema,String pmedicinasRecetadas,TreeMap pdoctorSeleccionado,TreeMap pexpedienteSeleccionado) throws SQLException, Exception {
+	 String idDoc = (String) pexpedienteSeleccionado.get("identificacion");
+	 String idEx = (String) pdoctorSeleccionado.get("identificacion");
+	 JOptionPane.showMessageDialog(null, idDoc+" "+idEx);
+	 
+	 Consulta nuevaConsulta = new Consulta(pfechaRealizacion, pdescripcionProblema, pmedicinasRecetadas, idDoc, idEx);
       
     (new MultiConsulta()).crear(nuevaConsulta);
   }

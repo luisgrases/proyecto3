@@ -8,6 +8,8 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import org.apache.commons.lang.Validate;
+
 import Modelos.Expediente;
 import Modelos.GestorExpediente;
 
@@ -16,6 +18,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -30,6 +33,7 @@ public class AbrirExpediente extends JDialog {
   private JTextField telefonoPacienteTF;
   private JTextField fechaNacimientoTF;
   private GestorExpediente gestorExpediente;
+  Validate validate = new Validate();
 
   /**
    * Launch the application.
@@ -131,7 +135,7 @@ public class AbrirExpediente extends JDialog {
         okButton.addActionListener(new ActionListener() {
           public void actionPerformed(ActionEvent e) {
             
-            String fechaApertura = fechaAperturaTF.getText(); 
+            String fechaApertura = fechaAperturaTF.getText();
             String cedulaPaciente = cedulaPacienteTF.getText();
             String nombrePaciente = nombrePacienteTF.getText();
             String direccionPaciente = direccionPacienteTF.getText();
@@ -140,6 +144,14 @@ public class AbrirExpediente extends JDialog {
             
            
             try {
+            	
+            	Validate.notEmpty(fechaApertura);
+            	Validate.notEmpty(cedulaPaciente);
+            	Validate.notEmpty(nombrePaciente);
+            	Validate.notEmpty(direccionPaciente);
+            	Validate.notEmpty(telefonoPaciente);
+            	Validate.notEmpty(fechaNacimientoPaciente);
+            	
               gestorExpediente.registrar(fechaApertura,cedulaPaciente,nombrePaciente,direccionPaciente,telefonoPaciente,fechaNacimientoPaciente);
               JOptionPane.showMessageDialog(null, "Se ha abierto el expediente de forma satisfacora");
             } catch (Exception e1) {
