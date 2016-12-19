@@ -20,6 +20,10 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class ListarConsultas extends JDialog {
@@ -71,10 +75,10 @@ public class ListarConsultas extends JDialog {
         
         TreeMap expedienteSeleccionado = (TreeMap)listaExpedientes.getSelectedValue();
         try {
-          Vector<TreeMap> consultas = gestorExpediente.listarConsultas((String)expedienteSeleccionado.get("id"));
+          Vector<String> consultas = gestorExpediente.listarConsultas((String)expedienteSeleccionado.get("identificacion"));
           model.removeAllElements();
-          for(TreeMap consulta : consultas){
-            model.addElement(consulta);  
+          for(String fechaConsulta : consultas){
+            model.addElement(fechaConsulta);  
           }
           
         } catch (SQLException e1) {
@@ -109,6 +113,23 @@ public class ListarConsultas extends JDialog {
       getContentPane().add(buttonPane, BorderLayout.SOUTH);
       {
         JButton okButton = new JButton("Mostrar");
+        okButton.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            String fechaSeleccionada = (String)listaConsultas.getSelectedValue();
+            TreeMap datosConsulta;
+            try {
+              datosConsulta = gestorExpediente.getConsultaPorFecha(fechaSeleccionada);
+              JOptionPane.showMessageDialog(null, datosConsulta);
+            } catch (SQLException e1) {
+              JOptionPane.showMessageDialog(null, e1.getMessage());
+              e1.printStackTrace();
+            } catch (Exception e1) {
+              // TODO Auto-generated catch block
+              e1.printStackTrace();
+            }
+            
+          }
+        });
         okButton.setActionCommand("OK");
         buttonPane.add(okButton);
         getRootPane().setDefaultButton(okButton);

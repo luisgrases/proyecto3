@@ -164,6 +164,14 @@ public String getTelefonoPaciente() {
   public String getCedulaPaciente() {
     return cedulaPaciente;
   }
+  
+  public Consulta getConsultaPorFecha(String pfecha) throws SQLException, Exception {
+    Vector<Consulta> consultas = getConsultas();
+    for(Consulta consulta : consultas) {
+      if (consulta.getFechaRealizacion().equals(pfecha)) return consulta;
+    }
+    return null;
+  }
 
 
   public void setCedulaPaciente(String cedulaPaciente) {

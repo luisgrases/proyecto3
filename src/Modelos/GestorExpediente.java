@@ -7,7 +7,7 @@ import java.util.Vector;
 import org.apache.commons.lang.Validate;
 
 public class GestorExpediente {
-
+  Expediente expedienteSeleccionado;
 
   public void registrar(String pfechaApertura,String pcedulaPaciente,String
       pnombrePaciente,String pdireccionPaciente,String ptelefonoPaciente,String pfechaNacimientoPaciente) throws SQLException, Exception {
@@ -15,13 +15,25 @@ public class GestorExpediente {
     new MultiExpediente().crear(expediente);
   }
   
-  public Vector<TreeMap> listarConsultas(String pnumExpediente) throws SQLException, Exception {
-    Vector<Consulta> consultas = (new MultiExpediente()).buscarExpedientePaciente(pnumExpediente).getConsultas();
-    Vector<TreeMap> datosConsultas = new Vector<TreeMap>();
+  public Vector<String> listarConsultas(String pnumExpediente) throws SQLException, Exception {
+    expedienteSeleccionado = (new MultiExpediente()).buscarExpedientePaciente(pnumExpediente);
+    Vector<Consulta> consultas = expedienteSeleccionado.getConsultas();
+    Vector<String> fechasConsultas = new Vector<String>();
     for (Consulta consulta : consultas) {
-      Vector<TreeMap> datosConsulta = new Vector<TreeMap>();
+      fechasConsultas.add(consulta.getFechaRealizacion());
     }
-    return datosConsultas;
+    return fechasConsultas;
+  }
+  
+  public TreeMap getConsultaPorFecha(String fecha) throws SQLException, Exception {
+    Consulta consulta = expedienteSeleccionado.getConsultaPorFecha(fecha);
+    TreeMap datosConsulta = new TreeMap();
+    datosConsulta.put("id", consulta.getId());
+    datosConsulta.put("doctor", consulta.getDoctor());
+    datosConsulta.put("fecha", consulta.getFechaRealizacion());
+    datosConsulta.put("problema", consulta.getProblema());
+    datosConsulta.put("medicinasRecetadas", consulta.getMedicinasRecetadas());
+    return datosConsulta;
   }
 
   public TreeMap buscarCedulaPaciente(String pcedula) throws SQLException, Exception {
