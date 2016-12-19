@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.TreeMap;
 import java.util.Vector;
 
+import javax.swing.JOptionPane;
+
 import org.apache.commons.lang.Validate;
 
 public class GestorExpediente {
@@ -27,6 +29,7 @@ public class GestorExpediente {
   
   public TreeMap getConsultaPorFecha(String fecha) throws SQLException, Exception {
     Consulta consulta = expedienteSeleccionado.getConsultaPorFecha(fecha);
+    JOptionPane.showMessageDialog(null,consulta.getDoctor());
     TreeMap datosConsulta = new TreeMap();
     datosConsulta.put("id", consulta.getId());
     datosConsulta.put("doctor", consulta.getDoctor());

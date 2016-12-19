@@ -30,7 +30,7 @@ public class Expediente {
       String pfechaNacimientoPaciente,
       String ptelefonoPaciente,
       String pedadPaciente
-      ) {
+      )throws Exception   {
 	  
 	  
     setId(pid);
@@ -50,7 +50,7 @@ public class Expediente {
       String pfechaNacimientoPaciente,
       String ptelefonoPaciente,
       String pcedulaPaciente
-      ) {
+      )throws Exception   {
     setFechaApertura(pfechaApertura);
     setNombrePaciente(pnombrePaciente);
     setDireccionPaciente(pdireccionPaciente);

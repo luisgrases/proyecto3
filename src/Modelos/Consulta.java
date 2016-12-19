@@ -8,44 +8,32 @@ public class Consulta {
   private String fechaRealizacion;
   private String problema;
   private String MedicinasRecetadas;
-  private String idDoctor;
-  private String idExpediente;
-  
-  public Consulta(
-      String pid,
-      String pfechaRealizacion,
-      String pproblema,
-      String pmedicinasRecetadas,
-      String pidDoctor,
-      String pidExpediente
-      ) {
-    setId(pid);
-    setFechaRealizacion(pfechaRealizacion);
-    setProblema(pproblema);
-    setMedicinasRecetadas(pmedicinasRecetadas);
-    setDoctor(pidDoctor);
-    setExpediente(pidExpediente);
-  }
+  private Doctor doctor;
+  private Expediente expediente;
   
   public Consulta(
       String pid,
       String pfechaRealizacion,
       String pproblema,
       String pmedicinasRecetadas
-      ) {
+      
+      )throws Exception   {
     setId(pid);
     setFechaRealizacion(pfechaRealizacion);
     setProblema(pproblema);
     setMedicinasRecetadas(pmedicinasRecetadas);
+   
   }
+  
+ 
   
   public Consulta(
       String pfechaRealizacion,
       String pproblema,
       String pmedicinasRecetadas,
-      String pdoctor,
-      String pexpediente
-      ) {
+      Doctor pdoctor,
+      Doctor pexpediente
+      )throws Exception   {
 	  
 	
     setFechaRealizacion(pfechaRealizacion);
@@ -90,28 +78,38 @@ public class Consulta {
     Validate.notEmpty(MedicinasRecetadas = medicinasRecetadas);
   }
   
-  public String getDoctor() {
-    return idDoctor;
+  public Doctor getDoctor() {
+	  
+	  if (doctor == null) {
+		  
+	    setDoctor(new MultiDoctor.buscarPorConsulta(id));
+	    
+	  }
+	     return doctor;
   }
   
-  public void setDoctor(String pidDoctor) {
-    Validate.notEmpty(this.idDoctor = pidDoctor);
+  public void setDoctor(Doctor pdoctor) {
+   
+    this.doctor = pdoctor;
   }
   
 
-  public String getExpediente() {
-    return idExpediente;
+  public Expediente getExpediente() {
+    return expediente;
   }
 
 
-  public void setExpediente(String pexpediente) {
-    Validate.notEmpty(this.idExpediente = pexpediente);
+  public void setExpediente(Expediente pexpediente) {
+    
+    this.expediente = pexpediente;
   }
 
   @Override
-  public String toString() {
-    return getFechaRealizacion();
-  }
+public String toString() {
+	return "Consulta [id=" + id + ", fechaRealizacion=" + fechaRealizacion + ", problema=" + problema
+			+ ", MedicinasRecetadas=" + MedicinasRecetadas + ", idDoctor=" + doctor + ", idExpediente=" + expediente
+			+ "]";
+}
   
   
   

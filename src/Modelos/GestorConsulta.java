@@ -11,7 +11,7 @@ public class GestorConsulta {
   public  void agregar(String pfechaRealizacion,String pdescripcionProblema,String pmedicinasRecetadas,TreeMap pdoctorSeleccionado,TreeMap pexpedienteSeleccionado) throws SQLException, Exception {
 	 String idDoc = (String) pexpedienteSeleccionado.get("identificacion");
 	 String idEx = (String) pdoctorSeleccionado.get("id");
-	 JOptionPane.showMessageDialog(null, idDoc+" "+idEx);
+	 
 	 
 	 Consulta nuevaConsulta = new Consulta(pfechaRealizacion, pdescripcionProblema, pmedicinasRecetadas, idDoc, idEx);
       

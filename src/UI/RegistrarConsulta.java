@@ -148,7 +148,7 @@ public class RegistrarConsulta extends JDialog {
               TreeMap datosExpediente = (TreeMap) expedienteCB.getSelectedItem();
               TreeMap doctorSeleccionado = (TreeMap) doctorCB.getSelectedItem();
               
-              JOptionPane.showMessageDialog(null,doctorSeleccionado);
+            
              
               gestorConsulta.agregar(
                   fechaRealizacion,
@@ -160,7 +160,7 @@ public class RegistrarConsulta extends JDialog {
               JOptionPane.showMessageDialog(null, "Se registro la consulta satisfactoriamente");
             } catch (Exception e1) {
               JOptionPane.showMessageDialog(null,"Error al registrar"+e1);
-              e1.printStackTrace();
+             
             }
           }
         });

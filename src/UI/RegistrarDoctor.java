@@ -88,14 +88,15 @@ public class RegistrarDoctor extends JDialog {
           String telefono = telefonoTF.getText();
           
           try {
+        	  
             gestorDoctor.registrarDoctor(nombre, especialidad, telefono);
             
-            Validate.notEmpty(nombre);
+            
             JOptionPane.showMessageDialog(null, "El doctor se ha creado satisfactoriamente");
           
           } catch (Exception e1) {
             JOptionPane.showMessageDialog(null, "Hubo un error al registrar el doctor"+e1);
-            e1.printStackTrace();
+            
           }
         }
       });

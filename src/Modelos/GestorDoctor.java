@@ -4,14 +4,17 @@ import java.sql.SQLException;
 import java.util.TreeMap;
 import java.util.Vector;
 
+import javax.swing.JOptionPane;
+
 
 public class GestorDoctor {
 
 
 
   public void registrarDoctor(String pnombre,String pespecialidad,String ptelefono)throws SQLException, Exception {
-
-    Doctor doctor = new Doctor(pnombre,pespecialidad,ptelefono);
+	 
+	  Doctor doctor = new Doctor(pnombre,pespecialidad,ptelefono);
+	  
     (new MultiDoctor()).crear(doctor);
   }
 
