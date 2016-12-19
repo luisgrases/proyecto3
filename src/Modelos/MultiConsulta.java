@@ -19,7 +19,7 @@ public class MultiConsulta {
         pconsulta.getProblema() + "', '" + 
         pconsulta.getMedicinasRecetadas() + "');";
         
-
+/*MAEOROROOEEOROJJJHIJSHKJ*/
     try{
       Conector.getConector().ejecutarSQL(sql);
 
