@@ -1,5 +1,7 @@
 package Modelos;
 
+import org.apache.commons.lang.Validate;
+
 public class Consulta {
 
   private String id;
@@ -44,6 +46,8 @@ public class Consulta {
       String pdoctor,
       String pexpediente
       ) {
+	  
+	
     setFechaRealizacion(pfechaRealizacion);
     setProblema(pproblema);
     setMedicinasRecetadas(pmedicinasRecetadas);
@@ -56,8 +60,10 @@ public class Consulta {
     return id;
   }
   
-  public void setId(String id) {
-    this.id = id;
+  public void setId(String id){
+	  
+	  Validate.notEmpty(this.id = id);
+	  
   }
   
   public String getFechaRealizacion() {
@@ -65,7 +71,7 @@ public class Consulta {
   }
   
   public void setFechaRealizacion(String fechaRealizacion) {
-    this.fechaRealizacion = fechaRealizacion;
+    Validate.notEmpty(this.fechaRealizacion = fechaRealizacion);
   }
   
   public String getProblema() {
@@ -73,7 +79,7 @@ public class Consulta {
   }
   
   public void setProblema(String problema) {
-    this.problema = problema;
+    Validate.notEmpty(this.problema = problema);
   }
   
   public String getMedicinasRecetadas() {
@@ -81,7 +87,7 @@ public class Consulta {
   }
   
   public void setMedicinasRecetadas(String medicinasRecetadas) {
-    MedicinasRecetadas = medicinasRecetadas;
+    Validate.notEmpty(MedicinasRecetadas = medicinasRecetadas);
   }
   
   public String getDoctor() {
@@ -89,7 +95,7 @@ public class Consulta {
   }
   
   public void setDoctor(String pidDoctor) {
-    this.idDoctor = pidDoctor;
+    Validate.notEmpty(this.idDoctor = pidDoctor);
   }
   
 
@@ -99,7 +105,7 @@ public class Consulta {
 
 
   public void setExpediente(String pexpediente) {
-    this.idExpediente = pexpediente;
+    Validate.notEmpty(this.idExpediente = pexpediente);
   }
 
   @Override

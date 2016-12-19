@@ -1,5 +1,7 @@
 package Modelos;
 
+import org.apache.commons.lang.Validate;
+
 public class Doctor {
   
   private String id;
@@ -25,25 +27,25 @@ public class Doctor {
     return id;
   }
   public void setId(String id) {
-    this.id = id;
+    Validate.notEmpty(this.id = id);
   }
   public String getNombre() {
     return nombre;
   }
   public void setNombre(String nombre) {
-    this.nombre = nombre;
+    Validate.notEmpty(this.nombre = nombre);
   }
   public String getEspecialidad() {
     return especialidad;
   }
   public void setEspecialidad(String especialidad) {
-    this.especialidad = especialidad;
+    Validate.notEmpty(this.especialidad = especialidad);
   }
   public String getTelefono() {
     return telefono;
   }
   public void setTelefono(String telefono) {
-    this.telefono = telefono;
+    Validate.notEmpty(this.telefono = telefono);
   }
   
   @Override

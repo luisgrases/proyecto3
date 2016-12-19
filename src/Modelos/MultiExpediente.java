@@ -66,20 +66,21 @@ public class MultiExpediente {
 	 java.sql.ResultSet rs;
 	 String sql;
 
-	    sql = "SELECT ID,FechaApertura,NombrePaciente,DireccionPaciente,TelefonoPaciente,FechaNacimientoPaciente,EdadPaciente "+
+	    sql = "SELECT * "+
 	        "FROM TExpediente "+
 	        "WHERE CedulaPaciente='"+ pcedula +"';";
 	    
 		rs = Conector.getConector().ejecutarSQL(sql,true);
 		if (rs.next()){
 			ex = new Expediente(
-				rs.getString("ID"),
-				rs.getString("FechaApertura"),
-				rs.getString("NombrePaciente"),
-				rs.getString("DireccionPaciente"),
-				//rs.getString("FechaNacimiento"),
-				rs.getString("TelefonoPaciente"),
-				rs.getString("EdadPaciente"));
+					rs.getString("ID"),
+					rs.getString("FechaApertura"),
+					rs.getString("NombrePaciente"),
+					rs.getString("CedulaPaciente"),
+					rs.getString("DireccionPaciente"),
+					rs.getString("FechaNacimientoPaciente"),
+					rs.getString("TelefonoPaciente"),
+					rs.getString("EdadPaciente"));
 		} else {
 			throw new Exception ("El paciente no esta registrado");
 		}
@@ -94,7 +95,7 @@ public class MultiExpediente {
 		 java.sql.ResultSet rs;
 		 String sql;
 	
-		    sql = "SELECT ID,FechaApertura,NombrePaciente,DireccionPaciente,TelefonoPaciente,FechaNacimientoPaciente,EdadPaciente "+
+		    sql = "SELECT * "+
 		        "FROM TExpediente "+
 		        "WHERE ID='"+ pnumeroExpediente +"';";
 		    
@@ -104,8 +105,9 @@ public class MultiExpediente {
 					rs.getString("ID"),
 					rs.getString("FechaApertura"),
 					rs.getString("NombrePaciente"),
+					rs.getString("CedulaPaciente"),
 					rs.getString("DireccionPaciente"),
-					//rs.getString("FechaNacimiento"),
+					rs.getString("FechaNacimientoPaciente"),
 					rs.getString("TelefonoPaciente"),
 					rs.getString("EdadPaciente"));
 			} else {

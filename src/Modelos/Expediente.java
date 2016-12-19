@@ -7,6 +7,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Vector;
 
+import org.apache.commons.lang.Validate;
+
 public class Expediente {
   
   private String id;
@@ -66,7 +68,7 @@ public class Expediente {
   }
   
   public void setId(String id) {
-    this.id = id;
+    Validate.notEmpty(this.id = id);
   }
   
   public String getFechaApertura() {
@@ -74,7 +76,7 @@ public class Expediente {
   }
   
   public void setFechaApertura(String fechaApertura) {
-    this.fechaApertura = fechaApertura;
+    Validate.notEmpty(this.fechaApertura = fechaApertura);
   }
   
   public Vector<Consulta> getConsultas() throws SQLException, Exception {
@@ -85,11 +87,11 @@ public class Expediente {
   }
   
   public void setConsultas(Vector<Consulta> consultas) {
-    this.consultas = consultas;
+    Validate.notEmpty(this.consultas = consultas);
   }
 
   public void setNombrePaciente(String nombrePaciente) {
-    this.nombrePaciente = nombrePaciente;
+    Validate.notEmpty(this.nombrePaciente = nombrePaciente);
   }
   
   public String getNombrePaciente() {
@@ -103,7 +105,7 @@ public class Expediente {
 
 
   public void setDireccionPaciente(String direccionPaciente) {
-    this.direccionPaciente = direccionPaciente;
+    Validate.notEmpty(this.direccionPaciente = direccionPaciente);
   }
 
 
@@ -113,7 +115,7 @@ public class Expediente {
 
 
   public void setFechaNacimientoPaciente(String fechaNacimientoPaciente) {
-    this.fechaNacimientoPaciente = fechaNacimientoPaciente;
+    Validate.notEmpty(this.fechaNacimientoPaciente = fechaNacimientoPaciente);
     
     
     int edad = calcularEdad(fechaNacimientoPaciente);
@@ -155,7 +157,7 @@ public String getTelefonoPaciente() {
 
 
   public void setTelefonoPaciente(String telefonoPaciente) {
-    this.telefonoPaciente = telefonoPaciente;
+    Validate.notEmpty(this.telefonoPaciente = telefonoPaciente);
   }
 
 
@@ -165,7 +167,7 @@ public String getTelefonoPaciente() {
 
 
   public void setCedulaPaciente(String cedulaPaciente) {
-    this.cedulaPaciente = cedulaPaciente;
+    Validate.notEmpty(this.cedulaPaciente = cedulaPaciente);
   }
 
 
