@@ -84,19 +84,13 @@ public class RegistrarDoctor extends JDialog {
       contentPanel.add(okButton);
       okButton.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
+          
           String nombre = nombreTF.getText();
           String especialidad = especialidadTF.getText();
           String telefono = telefonoTF.getText();
           
-          
-	          
-	    
-          
           try {
-        	  Validate.notEmpty(nombre);
-	          Validate.notEmpty(especialidad);
-	          Validate.notEmpty(telefono);
-            gestorDoctor.registrarDoctor(nombre,especialidad,telefono);
+            gestorDoctor.registrarDoctor(nombre, especialidad, telefono);
             JOptionPane.showMessageDialog(null, "El doctor se ha creado satisfactoriamente");
           
           } catch (Exception e1) {

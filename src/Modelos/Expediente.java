@@ -138,15 +138,15 @@ public class Expediente {
       
       fechaNacimiento.setTime(fechaNac);
       
-      int año = fechaActual.get(Calendar.YEAR)- fechaNacimiento.get(Calendar.YEAR);
+      int ano = fechaActual.get(Calendar.YEAR)- fechaNacimiento.get(Calendar.YEAR);
       int mes =fechaActual.get(Calendar.MONTH)- fechaNacimiento.get(Calendar.MONTH);
       int dia = fechaActual.get(Calendar.DATE)- fechaNacimiento.get(Calendar.DATE);
       
       if(mes<0 || (mes==0 && dia<0)){
-          año--;
+          ano--;
       }
       
-      return año;
+      return ano;
   }
 
 public String getTelefonoPaciente() {

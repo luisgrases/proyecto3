@@ -55,8 +55,8 @@ public class RegistrarConsulta extends JDialog {
    * @throws SQLException 
    */
   public RegistrarConsulta() throws SQLException, Exception {
-    Vector doctores = gestorDoctor.obtenerDoctores();
-    Vector expedientes = gestorExpediente.obtenerExpedientes();
+    Vector doctores = gestorDoctor.listarDoctores();
+    Vector expedientes = gestorExpediente.listar();
     setBounds(100, 100, 450, 300);
     getContentPane().setLayout(new BorderLayout());
     contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -148,9 +148,13 @@ public class RegistrarConsulta extends JDialog {
               TreeMap datosExpediente = (TreeMap) expedienteCB.getSelectedItem();
               TreeMap doctorSeleccionado = (TreeMap) doctorCB.getSelectedItem();
              
-              
-              
-              gestorConsulta.agregar(fechaRealizacion, descripcionProblema, medicinasRecetadas, doctorSeleccionado, datosExpediente);
+              gestorConsulta.agregar(
+                  fechaRealizacion,
+                  descripcionProblema,
+                  medicinasRecetadas,
+                  doctorSeleccionado,
+                  datosExpediente
+                  );
               JOptionPane.showMessageDialog(null, "Se registro la consulta satisfactoriamente");
             } catch (Exception e1) {
               JOptionPane.showMessageDialog(null,"Error"+e1);

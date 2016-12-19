@@ -68,13 +68,8 @@ public class ConsultarExpediente extends JFrame {
 		JButton btnBuscarPorCedulaPaciente = new JButton("Buscar por cedula de paciente");
 		btnBuscarPorCedulaPaciente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				buscarCedulaPaciente();
-				
-				
 			}
-
-			
 		});
 		btnBuscarPorCedulaPaciente.setBounds(107, 79, 228, 25);
 		contentPane.add(btnBuscarPorCedulaPaciente);
@@ -104,11 +99,9 @@ public class ConsultarExpediente extends JFrame {
 		
 		try {
 			TreeMap datosExpediente = gestorExpediente.buscarCedulaPaciente(cedula);
-			
 			JOptionPane.showMessageDialog(null,datosExpediente.toString());
 			
 		} catch (Exception e) {
-			
 			JOptionPane.showMessageDialog(null, "La cedula no esta registrada");
 		}
 		
@@ -125,7 +118,7 @@ public class ConsultarExpediente extends JFrame {
 			
 			JOptionPane.showMessageDialog(null,datosExpediente.toString());
 		} catch (Exception e) {
-			
+			  
 			JOptionPane.showMessageDialog(null, "El expediente no esta registrado");
 		}
 		

@@ -144,15 +144,7 @@ public class AbrirExpediente extends JDialog {
             
            
             try {
-            	
-            	Validate.notEmpty(fechaApertura);
-            	Validate.notEmpty(cedulaPaciente);
-            	Validate.notEmpty(nombrePaciente);
-            	Validate.notEmpty(direccionPaciente);
-            	Validate.notEmpty(telefonoPaciente);
-            	Validate.notEmpty(fechaNacimientoPaciente);
-            	
-              gestorExpediente.registrar(fechaApertura,cedulaPaciente,nombrePaciente,direccionPaciente,telefonoPaciente,fechaNacimientoPaciente);
+              gestorExpediente.registrar(fechaApertura, cedulaPaciente, nombrePaciente, direccionPaciente, telefonoPaciente, fechaNacimientoPaciente);
               JOptionPane.showMessageDialog(null, "Se ha abierto el expediente de forma satisfacora");
             } catch (Exception e1) {
             	

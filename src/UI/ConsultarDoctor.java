@@ -53,11 +53,11 @@ public class ConsultarDoctor extends JDialog {
    */
   public ConsultarDoctor() {
     
-    Vector<Doctor> doctores;
+    Vector<TreeMap> datosDoctores;
     try {
     	
-      doctores = gestorDoctor.listarDoctores();
-      list = new JList(doctores.toArray());
+      datosDoctores = gestorDoctor.listarDoctores();
+      list = new JList(datosDoctores.toArray());
     
     } catch (Exception e1) {
     	
@@ -76,13 +76,24 @@ public class ConsultarDoctor extends JDialog {
         JButton mostrarButton = new JButton("Mostrar");
         mostrarButton.addActionListener(new ActionListener() {
           public void actionPerformed(ActionEvent e) {
-            Doctor doctorSeleccionado = (Doctor)list.getSelectedValue();
-            JOptionPane.showMessageDialog(null,
-                "Id: " + doctorSeleccionado.getId() + "\n" +
-                "Nombre: " + doctorSeleccionado.getNombre() + "\n" +
-                "Especialidad: " + doctorSeleccionado.getEspecialidad() + "\n" +
-                "Telefono: " + doctorSeleccionado.getTelefono()
-                );
+            TreeMap doctorSeleccionado = (TreeMap)list.getSelectedValue();
+            TreeMap datosDoctor;
+            try {
+              datosDoctor = gestorDoctor.buscarDoctor((String)doctorSeleccionado.get("id"));
+              JOptionPane.showMessageDialog(null,
+                  "Id: " + datosDoctor.get("id")+ "\n" +
+                  "Nombre: " + datosDoctor.get("nombre") + "\n" +
+                  "Especialidad: " + datosDoctor.get("especialidad") + "\n" +
+                  "Telefono: " + datosDoctor.get("telefono")
+                  );
+            } catch (SQLException e1) {
+              // TODO Auto-generated catch block
+              e1.printStackTrace();
+            } catch (Exception e1) {
+              // TODO Auto-generated catch block
+              e1.printStackTrace();
+            }
+            
           }
         });
         
@@ -118,12 +129,12 @@ public class ConsultarDoctor extends JDialog {
         public void actionPerformed(ActionEvent e) {
           String id = idTF.getText();
           try {
-            Doctor doctor = gestorDoctor.buscarDoctor(id);
+            TreeMap datosDoctor = gestorDoctor.buscarDoctor(id);
             JOptionPane.showMessageDialog(null,
-                "Id: " + doctor.getId() + "\n" +
-                "Nombre: " + doctor.getNombre() + "\n" +
-                "Especialidad: " + doctor.getEspecialidad() + "\n" +
-                "Telefono: " + doctor.getTelefono()
+                "Id: " + datosDoctor.get("id")+ "\n" +
+                "Nombre: " + datosDoctor.get("nombre") + "\n" +
+                "Especialidad: " + datosDoctor.get("especialidad") + "\n" +
+                "Telefono: " + datosDoctor.get("telefono")
                 );
           } catch (Exception e1) {
             // TODO Auto-generated catch block

@@ -6,6 +6,7 @@ import Modelos.*;
 import java.awt.FlowLayout;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.TreeMap;
 import java.util.Vector;
 
 import javax.swing.JButton;
@@ -52,10 +53,9 @@ public class ListarConsultas extends JDialog {
     model = new DefaultListModel();
     JList listaConsultas = new JList(model);
     
-    Vector<Consulta> consultas = new Vector<Consulta>();
-    Vector<Expediente> expedientes = new Vector<Expediente>();
+    Vector<TreeMap> consultas = new Vector<TreeMap>();
+    Vector<TreeMap> expedientes = new Vector<TreeMap>();
     try {
-      consultas = gestorConsulta.listar();
       expedientes = gestorExpediente.listar();
     } catch (SQLException e) {
       e.printStackTrace();
@@ -69,12 +69,11 @@ public class ListarConsultas extends JDialog {
     listaExpedientes.addListSelectionListener(new ListSelectionListener() {
       public void valueChanged(ListSelectionEvent e) {
         
-        Expediente expedienteSeleccionado = (Expediente)listaExpedientes.getSelectedValue();
+        TreeMap expedienteSeleccionado = (TreeMap)listaExpedientes.getSelectedValue();
         try {
-          
-          Vector<Consulta> consultas = expedienteSeleccionado.getConsultas();
+          Vector<TreeMap> consultas = gestorExpediente.listarConsultas((String)expedienteSeleccionado.get("id"));
           model.removeAllElements();
-          for(Consulta consulta : consultas){
+          for(TreeMap consulta : consultas){
             model.addElement(consulta);  
           }
           
