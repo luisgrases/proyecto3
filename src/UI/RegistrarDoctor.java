@@ -20,6 +20,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JLabel;
 
 public class RegistrarDoctor extends JDialog {
 
@@ -59,28 +60,25 @@ public class RegistrarDoctor extends JDialog {
     contentPanel.setLayout(null);
     {
       nombreTF = new JTextField();
-      nombreTF.setBounds(37, 10, 116, 22);
-      nombreTF.setText("Nombre");
+      nombreTF.setBounds(37, 41, 116, 22);
       contentPanel.add(nombreTF);
       nombreTF.setColumns(10);
     }
     {
       especialidadTF = new JTextField();
-      especialidadTF.setBounds(158, 10, 116, 22);
-      especialidadTF.setText("Especialidad");
+      especialidadTF.setBounds(156, 41, 116, 22);
       contentPanel.add(especialidadTF);
       especialidadTF.setColumns(10);
     }
     {
       telefonoTF = new JTextField();
-      telefonoTF.setBounds(279, 10, 116, 22);
-      telefonoTF.setText("Telefono");
+      telefonoTF.setBounds(277, 41, 116, 22);
       contentPanel.add(telefonoTF);
       telefonoTF.setColumns(10);
     }
     {
       JButton okButton = new JButton("OK");
-      okButton.setBounds(300, 193, 49, 25);
+      okButton.setBounds(143, 193, 116, 25);
       contentPanel.add(okButton);
       okButton.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
@@ -91,6 +89,8 @@ public class RegistrarDoctor extends JDialog {
           
           try {
             gestorDoctor.registrarDoctor(nombre, especialidad, telefono);
+            
+            Validate.notEmpty(nombre);
             JOptionPane.showMessageDialog(null, "El doctor se ha creado satisfactoriamente");
           
           } catch (Exception e1) {
@@ -115,8 +115,20 @@ public class RegistrarDoctor extends JDialog {
     	}
     });
    
-    btnNewButton.setBounds(361, 193, 71, 25);
+    btnNewButton.setBounds(316, 193, 71, 25);
     contentPanel.add(btnNewButton);
+    
+    JLabel lblNombre = new JLabel("Nombre");
+    lblNombre.setBounds(37, 12, 56, 16);
+    contentPanel.add(lblNombre);
+    
+    JLabel lblEspecialidad = new JLabel("Especialidad");
+    lblEspecialidad.setBounds(156, 12, 116, 16);
+    contentPanel.add(lblEspecialidad);
+    
+    JLabel lblNewLabel = new JLabel("Telefono");
+    lblNewLabel.setBounds(284, 12, 56, 16);
+    contentPanel.add(lblNewLabel);
     {
       JPanel buttonPane = new JPanel();
       buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));

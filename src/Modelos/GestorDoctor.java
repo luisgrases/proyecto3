@@ -9,7 +9,7 @@ public class GestorDoctor {
 
 
 
-  public void registrarDoctor(String pnombre,String pespecialidad,String ptelefono) throws Exception {
+  public void registrarDoctor(String pnombre,String pespecialidad,String ptelefono)throws SQLException, Exception {
 
     Doctor doctor = new Doctor(pnombre,pespecialidad,ptelefono);
     (new MultiDoctor()).crear(doctor);

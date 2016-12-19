@@ -137,7 +137,7 @@ public class ConsultarDoctor extends JDialog {
                 "Telefono: " + datosDoctor.get("telefono")
                 );
           } catch (Exception e1) {
-            // TODO Auto-generated catch block
+            JOptionPane.showMessageDialog(null, "El doctor no esta registrado "+"\n"+e1);
             e1.printStackTrace();
           }
           
