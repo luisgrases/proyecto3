@@ -75,8 +75,12 @@ public class Expediente {
     return fechaApertura;
   }
   
-  public void setFechaApertura(String fechaApertura) {
-    Validate.notEmpty(this.fechaApertura = fechaApertura);
+  public void setFechaApertura(String fechaApertura) throws Exception {
+	  
+	  Validador.validarFormatoFecha(fechaApertura);
+	  Validador.ValidarFechaPosterior(this.fechaApertura, fechaNacimientoPaciente);
+	  
+	  this.fechaApertura = fechaApertura;
   }
   
   public Vector<Consulta> getConsultas() throws SQLException, Exception {
@@ -114,9 +118,12 @@ public class Expediente {
   }
 
 
-  public void setFechaNacimientoPaciente(String fechaNacimientoPaciente) {
-    Validate.notEmpty(this.fechaNacimientoPaciente = fechaNacimientoPaciente);
+  public void setFechaNacimientoPaciente(String fechaNacimientoPaciente) throws Exception {
+	  
+    Validador.validarFormatoFecha(fechaNacimientoPaciente);
+    Validador.ValidarFechaPosterior(this.fechaApertura, fechaNacimientoPaciente);
     
+    this.fechaNacimientoPaciente = fechaNacimientoPaciente;
     
     int edad = calcularEdad(fechaNacimientoPaciente);
     
