@@ -45,18 +45,20 @@ public class AdministracionConsultas extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
+				RegistrarConsulta view;
 				try {
-					RegistrarConsulta view = new RegistrarConsulta();
+					view = new RegistrarConsulta();
 					view.setVisible(true);
+					
 					frame.dispose();
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				
-				
 			}
 		});
+		
 		btnNewButton.setBounds(40, 83, 163, 25);
 		contentPane.add(btnNewButton);
 		
