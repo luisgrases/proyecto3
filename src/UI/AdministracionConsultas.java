@@ -48,9 +48,11 @@ public class AdministracionConsultas extends JFrame {
 				RegistrarConsulta view;
 				try {
 					view = new RegistrarConsulta();
+					
 					view.setVisible(true);
 					
 					frame.dispose();
+					
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
