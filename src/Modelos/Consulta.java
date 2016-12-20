@@ -43,6 +43,7 @@ public class Consulta {
     setMedicinasRecetadas(pmedicinasRecetadas);
     setDoctor(pdoctor);
     setExpediente(pexpediente);
+    
   }
   
   
@@ -60,8 +61,10 @@ public class Consulta {
     return fechaRealizacion;
   }
   
-  public void setFechaRealizacion(String fechaRealizacion) {
-    Validate.notEmpty(this.fechaRealizacion = fechaRealizacion);
+  public void setFechaRealizacion(String fechaRealizacion) throws Exception {
+	  
+	 Validador.validarFormatoFecha(fechaRealizacion);
+	 this.fechaRealizacion = fechaRealizacion;
   }
   
   public String getProblema() {

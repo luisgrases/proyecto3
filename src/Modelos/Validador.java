@@ -10,6 +10,8 @@ public class Validador {
   public static void ValidarFechaPosterior(String fechaAnterior, String fechaPosterior) throws Exception  {
 
       SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+      java.util.Date fecha = new Date();
+      System.out.println (fecha);
       Date fecha1 = sdf.parse(fechaAnterior);
       Date fecha2 = sdf.parse(fechaPosterior);
 
@@ -19,7 +21,7 @@ public class Validador {
   }
 
 
-  private static void validarFormatoFecha(String fechaAValidar) throws Exception {
+  static void validarFormatoFecha(String fechaAValidar) throws Exception {
 
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     sdf.setLenient(false);
