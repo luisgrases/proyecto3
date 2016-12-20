@@ -7,19 +7,21 @@ import java.util.Date;
 import org.apache.commons.lang.Validate;
 
 public class Validador {
-  public static void ValidarFechaPosterior(String fechaAnterior, String fechaPosterior) throws Exception  {
+  public static void ValidarFechaPosterior(String fechaAnterior) throws Exception  {
 
       SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+      Date fecha = new Date();
+      
       Date fecha1 = sdf.parse(fechaAnterior);
-      Date fecha2 = sdf.parse(fechaPosterior);
+     
 
-      if(fecha1.after(fecha2)){
-        throw new Exception(fechaAnterior + " no puede ser posterior a " + fechaPosterior);
+      if(fecha1.after(fecha)){
+        throw new Exception(fechaAnterior + " no puede ser posterior a " + fecha);
       }
   }
 
 
-  private static void validarFormatoFecha(String fechaAValidar) throws Exception {
+  public static void validarFormatoFecha(String fechaAValidar) throws Exception {
 
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     sdf.setLenient(false);
