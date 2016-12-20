@@ -11,7 +11,7 @@ public class Validador {
 
       SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
       java.util.Date fecha = new Date();
-      System.out.println (fecha);
+     
       Date fecha1 = sdf.parse(fechaAnterior);
       Date fecha2 = sdf.parse(fechaPosterior);
 
@@ -30,7 +30,7 @@ public class Validador {
 
       //if not valid, it will throw ParseException
       Date date = sdf.parse(fechaAValidar);
-      System.out.println(date);
+     
 
     } catch (ParseException e) {
 

@@ -29,7 +29,7 @@ public class GestorExpediente {
   
   public TreeMap getConsultaPorFecha(String fecha) throws SQLException, Exception {
     Consulta consulta = expedienteSeleccionado.getConsultaPorFecha(fecha);
-    JOptionPane.showMessageDialog(null,consulta.getDoctor());
+   
     TreeMap datosConsulta = new TreeMap();
     datosConsulta.put("id", consulta.getId());
     datosConsulta.put("doctor", consulta.getDoctor());

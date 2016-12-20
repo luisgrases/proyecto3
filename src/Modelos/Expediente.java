@@ -139,7 +139,7 @@ public class Expediente {
         
 		  fechaNac = new SimpleDateFormat("dd/MM/yyyy").parse(pfechaNacimientoPaciente);
       } catch (Exception ex) {
-          System.out.println("Error:"+ex);
+          
       }
       Calendar fechaNacimiento = Calendar.getInstance();
      

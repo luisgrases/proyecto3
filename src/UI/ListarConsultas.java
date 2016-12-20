@@ -125,7 +125,7 @@ public class ListarConsultas extends JDialog {
               JOptionPane.showMessageDialog(null, datosConsulta);
             } catch (SQLException e1) {
               JOptionPane.showMessageDialog(null, e1.getMessage());
-              e1.printStackTrace();
+              
             } catch (Exception e1) {
               // TODO Auto-generated catch block
               e1.printStackTrace();
