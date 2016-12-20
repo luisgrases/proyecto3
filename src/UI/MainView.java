@@ -61,23 +61,28 @@ public class MainView {
     		
     	}
     });
-   
-    	
-    	
-		
     ;
     
-    
-    
     JButton btnConsultarDoctor = new JButton("Consultar Doctor");
+    btnConsultarDoctor.addMouseListener(new MouseAdapter() {
+    	@Override
+    	public void mouseClicked(MouseEvent e) {
+    		
+    		ConsultarDoctor view = new ConsultarDoctor();
+    		
+    		view.setVisible(true);
+    		
+    		frame.dispose();
+    		
+    	}
+    });	
+    ;
     
     JButton btnAdministracionDeExpedientes = new JButton("Administracion de Expedientes");
     
+    
     JButton btnAdministrarConsultas = new JButton("Registrar Consulta");
-    btnAdministrarConsultas.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-      }
-    });
+    
     
     JButton btnNewButton = new JButton("Buscar Consulta");
     GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
@@ -112,4 +117,9 @@ public class MainView {
     );
     frame.getContentPane().setLayout(groupLayout);
   }
+
+  	public void setVisible(boolean b) {
+		// TODO Auto-generated method stub
+  		frame.setVisible(b);
+	}
 }

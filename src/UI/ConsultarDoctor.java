@@ -25,6 +25,8 @@ import javax.swing.JList;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
@@ -34,13 +36,14 @@ public class ConsultarDoctor extends JDialog {
   private JPanel buttonPane;
   private JTextField idTF;
   JList list;
+  private static ConsultarDoctor dialog;
 
   /**
    * Launch the application.
    */
   public static void main(String[] args) {
     try {
-      ConsultarDoctor dialog = new ConsultarDoctor();
+      dialog = new ConsultarDoctor();
       dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
       dialog.setVisible(true);
     } catch (Exception e) {
@@ -67,7 +70,7 @@ public class ConsultarDoctor extends JDialog {
     }
     
     
-    setBounds(100, 100, 450, 300);
+    setBounds(100, 100, 474, 322);
     {
       buttonPane = new JPanel();
       buttonPane.setBounds(0, 239, 450, 39);
@@ -102,9 +105,22 @@ public class ConsultarDoctor extends JDialog {
         getRootPane().setDefaultButton(mostrarButton);
       }
       {
-        JButton cancelButton = new JButton("Salir");
-        cancelButton.setActionCommand("Cancel");
-        buttonPane.add(cancelButton);
+    	  JButton cancelButton = new JButton("Atras");
+          cancelButton.setActionCommand("Atras");
+          buttonPane.add(cancelButton);
+          cancelButton.addMouseListener(new MouseAdapter() {
+          	@Override
+          	public void mouseClicked(MouseEvent e) {
+          		
+          		 
+          		MainView view = new MainView();
+          		
+          		view.setVisible(true);
+          		
+          		dialog.dispose();
+          		
+          	}
+          });
       }
     }
     

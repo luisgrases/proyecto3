@@ -15,6 +15,8 @@ import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.TreeMap;
@@ -33,6 +35,7 @@ public class RegistrarConsulta extends JDialog {
   private GestorConsulta gestorConsulta = new GestorConsulta();
   GestorDoctor gestorDoctor = new GestorDoctor();
   GestorExpediente gestorExpediente = new GestorExpediente();
+  private static RegistrarConsulta dialog;
   
   /**
    * Launch the application.
@@ -41,7 +44,7 @@ public class RegistrarConsulta extends JDialog {
     
     
     try {
-      RegistrarConsulta dialog = new RegistrarConsulta();
+      dialog = new RegistrarConsulta();
       dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
       dialog.setVisible(true);
     } catch (Exception e) {
@@ -169,9 +172,23 @@ public class RegistrarConsulta extends JDialog {
         getRootPane().setDefaultButton(okButton);
       }
       {
-        JButton cancelButton = new JButton("Cancel");
-        cancelButton.setActionCommand("Cancel");
+        JButton cancelButton = new JButton("Atras");
+        cancelButton.setActionCommand("Atras");
         buttonPane.add(cancelButton);
+        cancelButton.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		
+        		 
+        		MainView view = new MainView();
+        		
+        		view.setVisible(true);
+        		
+        		dialog.dispose();
+        		
+        	}
+        });
+        
       }
     }
   }

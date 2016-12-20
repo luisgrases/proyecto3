@@ -23,6 +23,8 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 
 
@@ -33,13 +35,14 @@ public class ListarConsultas extends JDialog {
   private GestorConsulta gestorConsulta;
   private GestorExpediente gestorExpediente;
   DefaultListModel model;
+  private static ListarConsultas dialog;
 
   /**
    * Launch the application.
    */
   public static void main(String[] args) {
     try {
-      ListarConsultas dialog = new ListarConsultas();
+      dialog = new ListarConsultas();
       dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
       dialog.setVisible(true);
     } catch (Exception e) {
@@ -135,9 +138,22 @@ public class ListarConsultas extends JDialog {
         getRootPane().setDefaultButton(okButton);
       }
       {
-        JButton cancelButton = new JButton("Cancel");
-        cancelButton.setActionCommand("Cancel");
-        buttonPane.add(cancelButton);
+    	  JButton cancelButton = new JButton("Atras");
+          cancelButton.setActionCommand("Atras");
+          buttonPane.add(cancelButton);
+          cancelButton.addMouseListener(new MouseAdapter() {
+          	@Override
+          	public void mouseClicked(MouseEvent e) {
+          		
+          		 
+          		MainView view = new MainView();
+          		
+          		view.setVisible(true);
+          		
+          		dialog.dispose();
+          		
+          	}
+          });
       }
     }
   }

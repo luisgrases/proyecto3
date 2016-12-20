@@ -31,6 +31,7 @@ public class RegistrarDoctor extends JDialog {
   private GestorDoctor gestorDoctor = new GestorDoctor();
   MainView window = new MainView();
   public Validate validate = new Validate();
+  private static RegistrarDoctor dialog;
   
  
 
@@ -39,7 +40,7 @@ public class RegistrarDoctor extends JDialog {
    */
   public static void main(String[] args) {
     try {
-      RegistrarDoctor dialog = new RegistrarDoctor();
+      dialog = new RegistrarDoctor();
       dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
       dialog.setVisible(true);
     } catch (Exception e) {
@@ -110,8 +111,11 @@ public class RegistrarDoctor extends JDialog {
     	public void mouseClicked(MouseEvent e) {
     		
     		 
-    		 
-    		 
+    		MainView view = new MainView();
+    		
+    		view.setVisible(true);
+    		
+    		dialog.dispose();
     		
     	}
     });

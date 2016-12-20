@@ -1,5 +1,7 @@
 package Modelos;
 
+import java.sql.SQLException;
+
 import org.apache.commons.lang.Validate;
 
 public class Consulta {
@@ -32,7 +34,7 @@ public class Consulta {
       String pproblema,
       String pmedicinasRecetadas,
       Doctor pdoctor,
-      Doctor pexpediente
+      Expediente pexpediente
       )throws Exception   {
 	  
 	
@@ -78,14 +80,14 @@ public class Consulta {
     Validate.notEmpty(MedicinasRecetadas = medicinasRecetadas);
   }
   
-  public Doctor getDoctor() {
+  public Doctor getDoctor() throws SQLException, Exception {
 	  
 	  if (doctor == null) {
 		  
-	    setDoctor(new MultiDoctor.buscarPorConsulta(id));
+	    setDoctor((new MultiConsulta()).DbuscarPorConsulta(id));
 	    
 	  }
-	     return doctor;
+	  return doctor;
   }
   
   public void setDoctor(Doctor pdoctor) {
@@ -94,8 +96,15 @@ public class Consulta {
   }
   
 
-  public Expediente getExpediente() {
-    return expediente;
+  public Expediente getExpediente() throws SQLException, Exception {
+	  
+	  if (expediente == null) {
+		  
+		  setExpediente((new MultiConsulta()).EbuscarPorConsulta(id));
+		    
+	  }
+	  
+	  return expediente;
   }
 
 

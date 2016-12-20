@@ -9,17 +9,19 @@ import CapaAccesoBD.Conector;
 public class MultiConsulta {
   
   public void crear(Consulta pconsulta)throws java.sql.SQLException,Exception{
+	  
+	Doctor doctor = pconsulta.getDoctor();
+	Expediente expediente = pconsulta.getExpediente();
 
     String sql = "INSERT INTO TConsulta"+"(IDDoctor,IDExpediente,FechaRealizacion, Problema, MedicinasRecetadas)" +
         "VALUES ('" +
     	
-		pconsulta.getExpediente() + "', '"+
-		pconsulta.getDoctor() + "', '" + 
+		doctor.getId() + "', '"+
+		expediente.getId() + "', '" + 
         pconsulta.getFechaRealizacion() + "', '" + 
         pconsulta.getProblema() + "', '" + 
         pconsulta.getMedicinasRecetadas() + "');";
         
-/*MAEOROROOEEOROJJJHIJSHKJ*/
     try{
       Conector.getConector().ejecutarSQL(sql);
 
@@ -92,5 +94,52 @@ public class MultiConsulta {
     return consultas;
 
   }
+  public Doctor DbuscarPorConsulta(String pid) throws java.sql.SQLException,Exception{
+	    Doctor doctor;
+	    String IdDoctor;
+	    java.sql.ResultSet rs;
+	    String sql;
+
+	    sql = "SELECT IDDoctor "+
+	        "FROM TConsulta "+
+	        "WHERE ID='"+ pid +"';";
+
+	    rs = Conector.getConector().ejecutarSQL(sql,true);
+
+	    if (rs.next()) {  
+	      IdDoctor = rs.getString("IDDoctor");
+	      doctor = (new MultiDoctor()).buscar(IdDoctor);
+	    } else {  
+	      throw new Exception ("El doctor no está registrado.");
+	    }
+
+	    rs.close();
+
+	    return doctor;
+	 }
+  
+  	public Expediente EbuscarPorConsulta(String pid) throws java.sql.SQLException,Exception{
+	    Expediente expediente;
+	    String IdExpediente;
+	    java.sql.ResultSet rs;
+	    String sql;
+
+	    sql = "SELECT IDExpediente "+
+	        "FROM TConsulta "+
+	        "WHERE ID='"+ pid +"';";
+
+	    rs = Conector.getConector().ejecutarSQL(sql,true);
+
+	    if (rs.next()) {  
+	      IdExpediente = rs.getString("IDExpediente");
+	      expediente = (new MultiExpediente()).buscarExpedientePaciente(IdExpediente);
+	    } else {  
+	      throw new Exception ("El doctor no está registrado.");
+	    }
+
+	    rs.close();
+
+	    return expediente;
+	 }
   
 }

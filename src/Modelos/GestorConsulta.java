@@ -12,8 +12,10 @@ public class GestorConsulta {
 	 String idDoc = (String) pexpedienteSeleccionado.get("identificacion");
 	 String idEx = (String) pdoctorSeleccionado.get("id");
 	 
+	 Doctor doctor = (new MultiDoctor()).buscar(idDoc);
+	 Expediente expediente = (new MultiExpediente()).buscarExpedientePaciente(idEx);
 	 
-	 Consulta nuevaConsulta = new Consulta(pfechaRealizacion, pdescripcionProblema, pmedicinasRecetadas, idDoc, idEx);
+	 Consulta nuevaConsulta = new Consulta(pfechaRealizacion, pdescripcionProblema, pmedicinasRecetadas, doctor, expediente);
       
     (new MultiConsulta()).crear(nuevaConsulta);
   }
