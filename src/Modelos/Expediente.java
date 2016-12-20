@@ -78,7 +78,7 @@ public class Expediente {
   public void setFechaApertura(String fechaApertura) throws Exception {
 	  
 	  Validador.validarFormatoFecha(fechaApertura);
-	  Validador.ValidarFechaPosterior(this.fechaApertura, fechaNacimientoPaciente);
+	  
 	  
 	  this.fechaApertura = fechaApertura;
   }
@@ -121,7 +121,7 @@ public class Expediente {
   public void setFechaNacimientoPaciente(String fechaNacimientoPaciente) throws Exception {
 	  
     Validador.validarFormatoFecha(fechaNacimientoPaciente);
-    Validador.ValidarFechaPosterior(this.fechaApertura, fechaNacimientoPaciente);
+    
     
     this.fechaNacimientoPaciente = fechaNacimientoPaciente;
     
